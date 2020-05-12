@@ -17,13 +17,13 @@ sys.path.append('..')
 
 
 import model.model as model
-import model.ssimLoss as ssimLoss
+# import model.ssimLoss as ssimLoss
 
+import ssimLoss
 import data.dataloader as dataloader
 import utils.monitor as monitor
 import validation
 
-import ssimLoss
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
 
@@ -238,8 +238,8 @@ def run(args) :
     index = np.arange(args.batchSize * 2)
     indexRoll = np.roll(index, args.batchSize)
     
-    index = torch.from_numpy(index).cuda()
-    indexRoll = torch.from_numpy(indexRoll).cuda()
+    index = torch.LongTensor(index).cuda()
+    indexRoll = torch.LongTensor(indexRoll).cuda()
     
     
     ###### Standard Training ######
